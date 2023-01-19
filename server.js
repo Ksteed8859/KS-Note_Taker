@@ -1,6 +1,7 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-const api = require('./public/assets/js/index')
+const api = require('./routes/routes_index')
 
 const app = express();
 const PORT = process.env.port || 3001;
@@ -13,7 +14,7 @@ app.use('/api', api);
 app.use(express.static('public'));
 
 //GET Route for homepage
-app.get('/', (req, res) =>
+app.get('*', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
@@ -24,6 +25,6 @@ app.get('/notes', (req, res) =>
 
 
 app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT}`)
+  console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
 
