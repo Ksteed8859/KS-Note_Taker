@@ -9,13 +9,13 @@ const {
 
 //GET Route for retrieving all saved notes
 notes.get('/', (req, res) => {
-    readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 //GET Route for retrieving a specific note
 notes.get('/:id', (req, res) => {
     const notesID = req.params.id;
-    readFromFile('../db/db.json')
+    readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
         const result = json.filter((note) => note.id === notesID);
@@ -28,11 +28,11 @@ notes.get('/:id', (req, res) => {
 //DELETE Route for a specific note
 notes.delete('/:id', (req, res) => {
     const notesID = req.params.id;
-    readFromFile('../db/db.json')
+    readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
         const result = json.filter((note) => note.id !== notesID);
-        writeToFile('../db/db.json', result);
+        writeToFile('./db/db.json', result);
         res.json(`Note ${notesID} has been deleted`);
     })
 })
